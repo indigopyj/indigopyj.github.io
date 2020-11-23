@@ -1,0 +1,168 @@
+---
+layout: post
+title: SOLO &#58; Segmenting Objects by Locations 논문요약
+date: '2020-11-23 16:21:00 +0900'
+description: # Add post description (optional)
+img: SOLO.png # Add image post (optional)
+tags: [Papers]
+author: # Add name author (optional)
+---
+
+
+## Introduction
+
+- 기존 segmentation 방식
+
+  - Top-down 방식 :
+
+      - "detect-then-segment"
+
+       - ex. FCIS, Mask R-CNN, PANet, TensorMask...
+
+    => SOLO는 box-free해서 box 위치/크기에 제약이 없고 FCN의 장점을 활용함.
+
+  - Botton-up 방식:
+
+       - affinity relation 학습. 각 픽셀에 embedding vector를 할당함.
+
+       - ex. SGN, SSAP,....
+
+    => SOLO는 mask annotation을 직접 학습하고, grouping post-processing없이 마스크와 카테고리를 end-to-end로 예측함.
+​
+
+## SOLO Architecture
+
+**SOLO는 instance category에 따라 픽셀을 분류(Classify)하는데, 카테고리는 위치와 크기에 따라 결정됨.**
+
+- Loction :
+
+  - 이미지를 SxS grid로 나누고, instance의 중심이 특정 grid cell에 위치한다고 가정.
+
+  - 만약 object center가 어떤 grid cell에 들어가게 되면, 그 cell은 semantic category를 예측하고 object instance를 segment함.
+  - center location category를 채널축으로 인코딩함( # channels = S^2)
+  - object center를 찾을 때 regression이 아니라 **classification**으로 접근함 -> instance수는 가변적이지만 channel수(S^2)는 고정되어 있는 모델에 적합함.
+
+- Size:
+
+  - FPN 사용해서 다양한 크기의 object를 잡도록 함.
+
+![image](https://user-images.githubusercontent.com/17904547/99937248-96a3b980-2da8-11eb-9f01-0b998505549b.png)
+
+
+### Semantic Category
+
+- 각 grid cell은 C-차원의 output을 형성하고, 각 object instance의 class probability를 나타냄.
+
+- 즉, 총 output space는 S x S x C
+
+​
+
+### Instance Mask
+
+- 만약 S x S grids로 나눈다고 하면, mask는 총 S^2개가 형성됨.
+- instance mask output shape = H x W x S^2
+
+- grid(i,j)에 대한 채널이 k번째라고 할 때, k = i*S + j
+
+- "CoordConv" operator :
+   - 위치에 대한 민감성(Spatially variance)를 높이기 위해 도입.
+
+   - 채널 2개가 추가됨 : pixel의 x-y coordinates에 대한 정보.
+
+   - 최종적으로 각 grid cell에 해당하는 segmentation result가 나오게 됨 -> NMS로 중복 마스크 제거
+![image](https://user-images.githubusercontent.com/17904547/99937285-b5a24b80-2da8-11eb-8f2a-1815478e5de2.png)
+
+
+
+### Network Architecture
+
+<img src="https://user-images.githubusercontent.com/17904547/99937684-a40d7380-2da9-11eb-9273-eb685166081f.png" width=500>
+
+​
+- Backbone : FPN으로 특성 추출
+
+- Network head: instance segmentation result 계산
+
+- align = adaptive-pooling, interpolation or region-grid-interpolation
+
+- mask는 원본에서 업샘플링된 형태.
+
+​
+
+### Loss Function
+
+<img src="https://user-images.githubusercontent.com/17904547/99937835-edf65980-2da9-11eb-96a8-2f5082fa9adf.png" width=300>
+
+**category loss** : focal loss 사용(sample imbalance 완화에 좋음)
+
+<img src="https://user-images.githubusercontent.com/17904547/99937880-0b2b2800-2daa-11eb-94d3-2b952ba7134f.png" width=500>
+
+**mask loss:**
+
+- N_pos = # of positive samples
+
+- p* : category target
+
+- m* : mask target
+
+- indicator function : if p* > 0, 1 otherwise 0
+
+- d_mask : GT mask와 predicted mask 간의 차이
+
+- Dice Loss : foreground와 background pixel을 자동적으로 밸런싱해줌.
+
+​
+![image](https://user-images.githubusercontent.com/17904547/99937965-36ae1280-2daa-11eb-9093-cbc8b1c31f9f.png)
+
+![image](https://user-images.githubusercontent.com/17904547/99937978-40d01100-2daa-11eb-9775-f86335b4900b.png)
+
+
+
+## Experiments
+
+<img src="https://user-images.githubusercontent.com/17904547/99938012-51808700-2daa-11eb-83aa-e3d9e70cbaf0.png" width=500>
+
+- grid number를 고정하는 것 보다 FPN으로 multi-scale에 대해 학습시키는 것이 성능이 더 좋음.
+
+<img src="https://user-images.githubusercontent.com/17904547/99938040-5fcea300-2daa-11eb-9ee8-d105a2413c00.png" width=500>
+
+- FPN pyramids를 사용하면 다양한 스케일의 instance를 segment할 수 있음.
+
+<img src="https://user-images.githubusercontent.com/17904547/99938061-69580b00-2daa-11eb-9bb6-fd3d7bc98537.png" width=500>
+
+- CoordConv operator는 layer 1개일 때 제일 적합함.
+
+<img src="https://user-images.githubusercontent.com/17904547/99938084-71b04600-2daa-11eb-99b8-6e4b4c9cc8dc.png" width=500>
+
+- Dice Loss를 쓸 때 성능이 제일 좋음.
+
+<img src="https://user-images.githubusercontent.com/17904547/99938097-7674fa00-2daa-11eb-8e86-ca1de6475b1c.png" width=500>
+
+- Network head의 깊이가 7일때 성능이 제일 좋음.
+
+​
+## Result
+
+<img src="https://user-images.githubusercontent.com/17904547/99938118-81c82580-2daa-11eb-880f-23e5a5cf2d3a.png" height=300>
+
+![image](https://user-images.githubusercontent.com/17904547/99938174-960c2280-2daa-11eb-851b-4d597fa02885.png)
+
+- 다른 instance에 대해 다른 mask prediction channels가 활성화되었음.
+
+![image](https://user-images.githubusercontent.com/17904547/99938189-9f958a80-2daa-11eb-841e-55af596b2c9f.png)
+
+- contour detection에도 활용할 수 있음.
+
+​
+
+## Decoupled SOLO
+
+<img src="https://user-images.githubusercontent.com/17904547/99938236-b89e3b80-2daa-11eb-99cf-62777eaaad3a.png" height=500>
+
+- object가 (i, j)에 있다고 하면, k = i*S + j
+
+- k번째 마스크는 X의 j번째 텐서와 Y의 i번째 텐서의 element-wise multiplication과 같음.
+
+<img src="https://user-images.githubusercontent.com/17904547/99938268-c6ec5780-2daa-11eb-858a-e3b42b21bdc0.png" width=500>
+
+- 성능은 거의 똑같지만 GPU 메모리를 덜 사용함.a
