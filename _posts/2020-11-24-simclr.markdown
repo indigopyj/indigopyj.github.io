@@ -1,0 +1,159 @@
+---
+layout: post
+title: SimCLR, SimCLRv2 논문요약
+date: '2020-11-24 00:24:00 +0900'
+description: # Add post description (optional)
+img: simclr.png # Add image post (optional)
+tags: [Papers]
+author: # Add name author (optional)
+---
+
+# SimCLR : A Simple Framework for Contrastive Learning of Visual Representations
+
+![image](https://user-images.githubusercontent.com/17904547/99977585-303e8b80-2de8-11eb-92ed-7fb4aa6b8451.png)
+
+## Introduction
+
+### 기존 visual representations 방법
+- Generative Approach
+  - 이미지를 생성하거나 입력이미지의 분포를 학습함
+  - 문제점 : pixel-level generation → expensive 
+
+- Discriminative Approach
+  - objective functions를 사용하여 representation을 학습
+  - 문제점 : pretext task를 휴리스틱하게 정의해야함.
+
+
+- SimCLR : Discriminative Approach based on **Contrastive learning**
+
+  - Dta augmentation
+  - Nonlinear transformation
+  - Contrastive cross entropy loss
+  - batch size ↑, num of epochs ↑
+
+​
+## Method
+
+### The Contrastive Learning Framework
+
+![image](https://user-images.githubusercontent.com/17904547/99977751-667c0b00-2de8-11eb-9128-537339807256.png)
+
+- T : 같은 이미지를 다른 두 가지 버전으로 변형시키는 stochastic data augmentation module. 종류는 random cropping, random color distortions, random Gaussian Blur
+- x_tilde_i, x_tilde_j : 변형된 이미지쌍. Positive pair라고 함.
+- f : representation vector를 뽑아내는 base encoder. (ex. ResNet)
+- g : Projecction head. representation(= h)을 contrastive loss가 적용된 space로 매핑. 한개의 hidden layer MLP로 이루어진 네트워크.
+- Contrastive Loss Function : set {x_tilde_k}에서 x_i의 쌍인 x_j를 식별하는 것을 목표로 하는 손실함수
+   - N개의 샘플로 이루어진 minibatch, 총 2N개의 data points가 생성됨.
+   - Negative examples = positive pair가 아닌 나머지 2(N-1)개의 이미지
+
+<p align="center"><img src="https://user-images.githubusercontent.com/17904547/99978203-fe79f480-2de8-11eb-9066-cb2f30c7e25d.png" height=100></p>
+
+![a224a200-d804-11ea-9132-9004d46c28fa](https://user-images.githubusercontent.com/17904547/99978507-603a5e80-2de9-11eb-97a3-46f5a505e17b.gif)
+
+### Data augmentation for Contrastive Learning
+<img src="https://user-images.githubusercontent.com/17904547/99978624-85c76800-2de9-11eb-94e1-560bb1125fe1.png" width=700>
+<img src="https://user-images.githubusercontent.com/17904547/99978776-b909f700-2de9-11eb-815f-f4eaaad89ed8.png" width=700>
+<img src="https://user-images.githubusercontent.com/17904547/99978648-8cee7600-2de9-11eb-81d9-b50f2e6a8ac4.png" width=700>
+
+- random cropping과 random color distortion을 합한 것이 제일 좋은 성능을 보임.
+- 오직 random crop만 하면 이미지 패치의 대부분이 비슷한 color distribution을 보임
+- 네트워크가 이미지를 구분할때 shortcut을 사용할 위험이 있음.
+- 따라서 반드시 color distortion과 random cropping을 같이 써야함.
+
+### Architectures for Encoder and Head
+
+<img src="https://user-images.githubusercontent.com/17904547/99978928-e48ce180-2de9-11eb-8666-395590c321c6.png" width=700>
+
+- Deeper and Wider models are better
+- Unsupervised model이 supervised model보다 네트워크 크기에 따른 이득을 더 많이 봄.
+
+![image](https://user-images.githubusercontent.com/17904547/99978950-ebb3ef80-2de9-11eb-9ec8-4a6c9159353f.png)
+
+- Identity mapping vs. Linear Projection vs. Nonlinear projection with one hidden layer
+- Nonlinear projection을 쓸때 제일 성능이 좋았음.
+
+<img src="https://user-images.githubusercontent.com/17904547/99978986-f7071b00-2de9-11eb-902b-53fb8ebdcce5.png" height=40>
+
+<img src="https://user-images.githubusercontent.com/17904547/99978994-f8d0de80-2de9-11eb-9097-ec215a5a4fc8.png" height=200>
+
+- 만약 trained model을 downstream task에 사용한다면, nonlinear projection 이전의 representation을 사용해야함(projection head는 제거해야함).
+- contrastive loss에 의해 color나 orientation 등의 정보손실이 일어나기 때문.
+
+<img src="https://user-images.githubusercontent.com/17904547/99979424-6d0b8200-2dea-11eb-9c1c-ab548ab62c52.png" width=500>
+
+- epoch수가 증가할수록, batch size가 다른 모델들 사이의 정확도 차이가 줄어듬
+- batch size가 증가할수록, 더 많은 negative examples를 만들어 convergence를 촉진시킴.
+- 즉, batch size와 epoch수가 클수록 SimCLR의 성능은 좋아짐.
+
+-------------------------------------
+
+# SimCLRv2 : Big Self-Supervised Models are Strong Semi-Supervised Learners
+
+## Introduction
+![image](https://user-images.githubusercontent.com/17904547/99979743-c8d60b00-2dea-11eb-9451-25d4a1722abd.png)
+
+- NLP에서 사용하던 "unsupervised pretrain, supervised fine-tune" 방법을 CV에도 적용한 것.
+
+   1) unsupervised or self-supervised pretraining
+
+   2) supervised fine-tuning
+
+   3) distillation using unlabeled data
+
+- Bigger self-supervised models are mode label efficient
+
+- fine-tuning from a middle layer of the projection head
+
+
+## Architecture
+
+![image](https://user-images.githubusercontent.com/17904547/99979803-dbe8db00-2dea-11eb-845e-454b6659c7a9.png)
+
+### 1) Unsupervised pretraining
+
+- Unlabeled data를 사용하여 task-agnostic하게 general representations을 학습함.
+- SimCLR을 개선한 SimCLRv2 사용
+
+
+  | SimCLR | SimCLRv2
+-- | -- | --
+Model | ResNet50 | ResNet152
+Non-linear Network g | 1 hidden layer | 3 hidden layers
+Optimal Layer for fine-tuning | input(0th layer) | first layer
+Memory mechanism | - | MoCo의 방식과 통합
+
+![image](https://user-images.githubusercontent.com/17904547/99979933-03d83e80-2deb-11eb-9667-29f1bde509eb.png)
+![image](https://user-images.githubusercontent.com/17904547/99979957-089cf280-2deb-11eb-81f2-f770f1c69694.png)
+
+- Bigger model이 supervised learning과 semi-supervised learning 둘다 label-efficient했지만, semi-supervised learning에서 증가폭이 더 큼.
+
+
+### 2) Fine-tuning
+- labeled data를 사용하여 task-specific하게 supervised learning
+
+### 3) Self-training / Knowledge distillation
+
+<img src="https://user-images.githubusercontent.com/17904547/99980071-2c603880-2deb-11eb-86f3-4c7629110ef7.png" height=100>
+
+- Teacher network = Fine-tuned network
+- Student network = same model but smaller network
+- Teacher net의 결과를 Student net이 모방하는 것으로 학습됨.
+
+​
+![image](https://user-images.githubusercontent.com/17904547/99980152-439f2600-2deb-11eb-88a2-45f0b3a017f9.png)
+
+- Distillation loss는 unlabeled dataset과 쓸 때 효과가 좋음
+
+![image](https://user-images.githubusercontent.com/17904547/99980184-4ac63400-2deb-11eb-9bfe-8773b32be02c.png)
+
+- Distillation을 했을 때, model efficiency ↑
+- Self-Distillation(Student net size == Teacher net size)을 했을 때, learning performance ↑
+
+## Conclusion
+
+![image](https://user-images.githubusercontent.com/17904547/99980210-5285d880-2deb-11eb-8604-b1f5ebfe863a.png)
+
+
+
+​
+a
