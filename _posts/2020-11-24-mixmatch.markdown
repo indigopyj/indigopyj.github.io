@@ -1,0 +1,115 @@
+---
+layout: post
+title: MixMatch : A Holistic Approach to Semi-Supervised Learning 논문요약
+date: '2020-11-24 01:00:00 +0900'
+description: # Add post description (optional)
+img: mixmatch.png # Add image post (optional)
+tags: [Papers]
+author: # Add name author (optional)
+---
+
+## Related Work
+
+### 1. Consistency Regularization
+![image](https://user-images.githubusercontent.com/17904547/99983714-8d8a0b00-2def-11eb-8508-d10a8f681108.png)
+
+- Supervised Learning : 데이터를 변형해도 클래스 정보는 바뀌지 않는다.
+- Semi-Supervised Learning : **a classifier should output the same class distribution for an unlabeled example even after it has been augmented.**
+- MixMatch에서는 Standard data augmentation(random horizontal flips & crops) 사용
+
+
+### 2. Entropy Minimization
+
+<img src="https://usr-images.githubusercontent.com/17904547/99983751-9aa6fa00-2def-11eb-8a8f-faabb6587c84.png" width=500>
+
+- Entropy ↑ : 불확실성↑, 확률분포가 평평해짐.
+- Entropy ↓ : 확률분포가 극단적으로 치우져짐.
+
+
+### 3. MixUp
+
+<img src="https://user-images.githubusercontent.com/17904547/99983788-a4306200-2def-11eb-88eb-9b81c4a4ea0d.png" width=500>
+
+- 한 쌍의 데이터와 레이블 각각을 가지고 convex combination을 통해 새로운 데이터를 생성함.
+- unseen data에 강해짐, overfitting 방지
+
+​
+
+
+
+## MixMatch
+
+<img src="https://user-images.githubusercontent.com/17904547/99983810-b0b4ba80-2def-11eb-86c2-15dde21f04de.png">
+
+- label data : augmented
+- unlabeled data : K augmentations
+- Average Predictions & Temperature sharpening → **Pseudo label**
+
+### ※ Sharpening
+
+![image](https://user-images.githubusercontent.com/17904547/99983853-be6a4000-2def-11eb-9478-58aa423b9f79.png)
+
+- T→0, "one-hot" distribution이 됨
+- T ↓, Lower-Entropy distribution
+
+​
+![image](https://user-images.githubusercontent.com/17904547/99983862-c2965d80-2def-11eb-8056-5bb248f45777.png)
+
+- N Labeled data, M unlabeled data가 있을 때, 이것을 모두 Concat & Shuffle
+- 그리고 그 shuffled data를 다시 N개와 M개로 나눔. 각각을 W_L, W_U라고 할때
+
+![image](https://user-images.githubusercontent.com/17904547/99983877-c88c3e80-2def-11eb-8cca-dc8888f41d1b.png)
+
+- MixUp N labeled data & W_L
+- MixUp M unlabeled data & W_U
+
+​
+
+### Mixup
+
+![image](https://user-images.githubusercontent.com/17904547/99983915-d2ae3d00-2def-11eb-9f7e-b09cf41cc113.png)
+
+
+- 0.5 <= λ' <= 1
+- 항상 x1과 p1이 많이 반영됨.
+- 즉, W_L, W_U보다는 원래 데이터(N Labeled data, M unlabeled data)를 믹스업에 더 많이 반영되도록함.
+
+
+![image](https://user-images.githubusercontent.com/17904547/99983966-e063c280-2def-11eb-9434-f231fa43de45.png)
+
+- labeled group : cross entropy between predictions and mixup label
+- unlabeled group : Squared L2 loss between predictions and mixup label
+
+![image](https://user-images.githubusercontent.com/17904547/99983998-e8236700-2def-11eb-95a8-815afe8b6c4c.png)
+
+### Loss
+
+![image](https://user-images.githubusercontent.com/17904547/99984029-f07ba200-2def-11eb-8f3b-0c5b3c339c31.png)
+
+X' : labeled group
+U' : unlabeled group
+L_x : cross entropy loss
+L_u : Squared L2 Loss
+λ_u : weight for L_u
+
+​
+
+​
+
+## Results
+
+![image](https://user-images.githubusercontent.com/17904547/99984059-f83b4680-2def-11eb-9ef3-3777aebfa2fe.png)
+
+- 250 examples일 때, 다른모델들과 비교하였을때 독보적으로 에러율이 낮았음.
+- 250 examples일 때, 이미 supervised model 과 에러율이 비슷함.
+
+
+![image](https://user-images.githubusercontent.com/17904547/99984090-fffaeb00-2def-11eb-96d1-f81190371e4f.png)
+
+![image](https://user-images.githubusercontent.com/17904547/99984117-05f0cc00-2df0-11eb-86a6-8f38025381de.png)
+
+- Mixmatch의 모든 요소들이 성능에 영향을 미침.
+- 특히 250 labels일 때 dramatic difference가 있었음.
+
+
+​
