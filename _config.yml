@@ -10,7 +10,7 @@ url: "https://indigopyj.github.io" # the base hostname & protocol for your site,
 remote_theme: "artemsheludko/adam-blog"
 # Author settings
 author: 박나깨 # add your name
-author-pic: profile.jpg
+author-pic: profile.jpeg
 about-author: 저는 Deep Learning, Computer Vision, AI, Image Processing에 관심이 있는 학생입니다.
 
 # Contact links
