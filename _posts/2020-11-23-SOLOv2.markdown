@@ -1,0 +1,155 @@
+---
+layout: post
+title: SOLOv2 &#58; Dynamic, Faster, and Stronger 논문요약
+date: '2020-11-23 11:54:00 +0900'
+description: # Add post description (optional)
+img: solov2.jpg # Add image post (optional)
+tags: [Papers]
+author: # Add name author (optional)
+---
+
+## Compared to SOLOv1
+
+### SOLOv1
+
+![image](https://user-images.githubusercontent.com/17904547/99974542-6c6fed00-2de4-11eb-9652-d5b233a01066.png)
+
+
+- Location과 Size 기반의 Instance Segmentation
+
+- Category Branch : 각 grid cell의 semantic category 예측
+
+- Mask Branch : segment object instance
+
+- Decoupled SOLO : S^2 에 비해 instance 수는 너무 작은 문제를 해결.
+
+![image](https://user-images.githubusercontent.com/17904547/99974902-e7d19e80-2de4-11eb-811e-82188363b517.png)
+
+### SOLOv2는 더 좋은 object masks를 만드는 것에 집중함.
+
+- Mask learning
+- Matrix NMS
+- performance ↑, speed of inference ↑
+
+​
+
+## Dynamic Instance Segmentation
+
+![image](https://user-images.githubusercontent.com/17904547/99975036-0c2d7b00-2de5-11eb-9d29-7fa6a97b3ee3.png)
+
+​
+
+### M = F ∗ G
+
+### Mask Kernel Branch
+
+- 각 grid cell마다 D-dimension의 아웃풋이 생성됨 = 각 grid cell마다 D개의 파라미터를 가짐
+
+### Mask Feature Branch
+
+- predict instance-aware feature map F
+
+- Mask Feature Branch의 위치
+
+  - (a) 각 FPN level마다 mask prediction
+
+  - (b) unified mask ⇢ **ACCEPT**
+
+​
+<img src="https://user-images.githubusercontent.com/17904547/99975158-3bdc8300-2de5-11eb-8155-50a4181e9e52.png" width=500>
+
+### Loss
+
+<img src="https://user-images.githubusercontent.com/17904547/99975202-4ac33580-2de5-11eb-8da2-fe38fcec83dc.png" height=80>
+
+​
+### Inference
+
+- backbone과 FPN에 input을 넣어, grid(i,j)에 대한 category score p_(i,j)를 구함
+
+- Thresholding(confidence = 0.1)
+
+- Mask feature 와 Mask kernel을 컨볼루션
+
+- Sigmoid를 통과시킨 후, 0.5를 기준으로 binary mask를 생성.
+
+​
+## Matrix NMS
+
+### Soft NMS
+
+- decay factor = f(iou)
+
+- 두 obj의 IoU가 높으면, 단순감소함수 f(iou)를 곱해서 서서히 score를 감소시킴.
+
+- minimum score thresholding으로 제거됨.
+
+### Matrix NMS
+
+- m_i와 m_j 중 m_i의 score가 더 높을 때, 아래에 의해서 decay factor m_j가 결정됨.
+
+- m_i가 m_j에게 주는 패널티 → f(iou)
+
+- m_i가 suppress될 확률 → IoU로 추정하기
+
+- m_i와 가장 많이 겹치는 mask와의 IoU를 기반으로 확률을 추정.
+
+<img src="https://user-images.githubusercontent.com/17904547/99975495-a7265500-2de5-11eb-93a9-980affff502b.png" height=80>
+
+​
+
+- Final Decay factor
+
+​<img src="https://user-images.githubusercontent.com/17904547/99975510-abeb0900-2de5-11eb-8cc0-3a791150f7fc.png" height=100>
+
+
+
+## Experiments
+
+![image](https://user-images.githubusercontent.com/17904547/99975621-d63cc680-2de5-11eb-9f5f-ad85a4e22154.png)
+
+- Instance segmentation 성능 비교
+
+![image](https://user-images.githubusercontent.com/17904547/99975708-eeace100-2de5-11eb-844e-745ad01e4ad8.png)
+
+- Object Detection 성능 비교
+
+![image](https://user-images.githubusercontent.com/17904547/99975722-f2406800-2de5-11eb-9713-1dfaf0809392.png)
+
+- 다양한 kernel shape에 대한 실험. 1 x 1 x 256 일때 가장 안정적임
+
+![image](https://user-images.githubusercontent.com/17904547/99975742-f66c8580-2de5-11eb-937c-cb6b3bd23318.png)
+
+
+- position 정보를 주었을 때(✓)의 AP의 변화
+
+![image](https://user-images.githubusercontent.com/17904547/99975845-0dab7300-2de6-11eb-8c5a-7e8a73a32625.png)
+
+- Mask Feature representation method : unified 일때 성능이 더 좋음.
+
+- Medium-size와 large-size object에 대해 더 정확한 boundary를 잡아냄
+
+![image](https://user-images.githubusercontent.com/17904547/99975866-1439ea80-2de6-11eb-8f80-0abfc2bc6a1c.png)
+
+- Dynamic Head를 썼을 때 성능이 더 좋음.
+
+![image](https://user-images.githubusercontent.com/17904547/99975886-1c922580-2de6-11eb-8e3c-5606c32bbb93.png)
+
+- Matrix NMS를 썼을 때 speed와 accuracy가 향상함.
+
+![image](https://user-images.githubusercontent.com/17904547/99975901-2156d980-2de6-11eb-9374-154954770dc5.png)
+
+- Mask feature map의 두가지 양상 : position-sensitive(주황색) / position-agnostic(흰색)
+
+![image](https://user-images.githubusercontent.com/17904547/99975933-2d429b80-2de6-11eb-9363-65d9edc120c4.png)
+
+​
+​
+
+## Conclusion
+
+- Adaptive, dynamic convolution kernels → Powerful head design, reduced FLOPs
+
+- Unified Mask → predict more accurate boundaries
+
+- Matrix NMS : much faster without sacrificing AP
