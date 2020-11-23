@@ -1,5 +1,5 @@
-title: My personal blog - Adam Neilson
-email: your-email@domain.com
+title: 개발 여정
+email: indigopyj@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
@@ -9,17 +9,17 @@ baseurl: " " # the subpath of your site, e.g. /blog
 url: "https://indigopyj.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 remote_theme: "artemsheludko/adam-blog"
 # Author settings
-author: Adam Neilson # add your name
-author-pic: adam-face.jpg
-about-author: My name is Adam Neilson. I’m a full-time adventure travel blogger and photographer who’s been exploring the world for over 2 years.
+author: 박나깨 # add your name
+author-pic: profile.jpg
+about-author: 저는 Deep Learning, Computer Vision, AI, Image Processing에 관심이 있는 학생입니다.
 
 # Contact links
-email: # Add your Email address
+email: indigopyj@gmail.com # Add your Email address
 phone: # Add your Phone number
-website: # Add your website, do not add http://
-linkedin: # Add your Linkedin handle
-github: artemsheludko # Add your Github handle
-twitter: '@artemsheludko_' # Add your Twitter handle
+website: https://blog.naver.com/revan2426 # Add your website, do not add http://
+linkedin: https://www.linkedin.com/in/yeojeong-park-9667201b8/ # Add your Linkedin handle
+github: indigopyj # Add your Github handle
+twitter:  # Add your Twitter handle
 facebook: # Add your Facebook handle
 instagram: # Add your Instagram handle
 pinterest: # Add your Pinterest handle
@@ -28,7 +28,7 @@ pinterest: # Add your Pinterest handle
 mailchimp: # Add your MailChimp form identifier.
 
 # Disqus
-discus_identifier: mr-brown # Add your discus identifier
+discus_identifier: indigo # Add your discus identifier
 
 # Tracker
 analytics: # Google Analytics
