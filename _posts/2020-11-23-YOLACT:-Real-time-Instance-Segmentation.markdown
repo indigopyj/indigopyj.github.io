@@ -1,6 +1,6 @@
 ---
 layout: post
-title: YOLACT\ Real-time Instance Segmentation 논문요약
+title: YOLACT &#58; Real-time Instance Segmentation 논문요약
 date: '2020-11-23 15:15:00 +0900'
 description: # Add post description (optional)
 img: YOLACT.jpg # Add image post (optional)
