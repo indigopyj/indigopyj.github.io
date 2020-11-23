@@ -3,7 +3,7 @@ layout: post
 title: YOLACT: Real-time Instance Segmentation 논문요약
 date: '2020-11-23 15:15:00 +0900'
 description: # Add post description (optional)
-img: YOLACT.png # Add image post (optional)
+img: YOLACT.jpg # Add image post (optional)
 tags: [Papers]
 author: # Add name author (optional)
 ---
@@ -49,6 +49,7 @@ Prototype을 생성함.
   - Loss를 명확하게 나타내지는 않음->확실한 것(ex. Background)에 대해서 과하게 표현할 수 있도록 하기 위해.
 
 ![image](https://user-images.githubusercontent.com/17904547/99934215-b636e400-2da0-11eb-815b-448f784caa2c.png)
+
 예시) k=6
 - 1~3: boundary의 한 쪽에 있는 객체를 activate
 - 4: 객체 왼쪽 하단에서 activate
@@ -72,6 +73,7 @@ P : prototype masks, C: mask coefficients
 ### Loss
 
 <p align="center"><img src="https://user-images.githubusercontent.com/17904547/99934347-1c236b80-2da1-11eb-9a82-02c1974a8519.png" width=400>
+
 <img src="https://user-images.githubusercontent.com/17904547/99934373-25acd380-2da1-11eb-84d1-f450ce75aed7.png" width=300></p>
 
 #### ※ How to learn localizing instances?
@@ -103,6 +105,7 @@ ex) 중앙에 위치한 픽셀은 padding value가 convolution 연산에 포함�
 ## Results
 
 ![image](https://user-images.githubusercontent.com/17904547/99934583-baafcc80-2da1-11eb-824d-e94422a729e1.png)
+
 ![image](https://user-images.githubusercontent.com/17904547/99934595-c26f7100-2da1-11eb-8aae-f4952f2217ae.png)
 
 - mask quality가 다른 모델과 비교했을 때 훨씬 좋음.
