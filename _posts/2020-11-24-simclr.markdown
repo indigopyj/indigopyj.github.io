@@ -124,7 +124,7 @@ Model | ResNet50 | ResNet152
 Non-linear Network g | 1 hidden layer | 3 hidden layers
 Optimal Layer for fine-tuning | input(0th layer) | first layer
 Memory mechanism | - | MoCo의 방식과 통합
-{:.table-striped}
+{:.mbtablestyle}
 
 ![image](https://user-images.githubusercontent.com/17904547/99979933-03d83e80-2deb-11eb-9667-29f1bde509eb.png)
 ![image](https://user-images.githubusercontent.com/17904547/99979957-089cf280-2deb-11eb-81f2-f770f1c69694.png)
