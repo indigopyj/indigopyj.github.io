@@ -20,7 +20,7 @@ author: # Add name author (optional)
 
 ### 2. Entropy Minimization
 
-<img src="https://usr-images.githubusercontent.com/17904547/99983751-9aa6fa00-2def-11eb-8a8f-faabb6587c84.png" width=500>
+<img src="https://user-images.githubusercontent.com/17904547/99984852-ec03b900-2df0-11eb-8c57-7ef0f8f1fc7b.png" width=500>
 
 - Entropy ↑ : 불확실성↑, 확률분포가 평평해짐.
 - Entropy ↓ : 확률분포가 극단적으로 치우져짐.
