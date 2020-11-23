@@ -50,6 +50,9 @@ author: # Add name author (optional)
 
 ![a224a200-d804-11ea-9132-9004d46c28fa](https://user-images.githubusercontent.com/17904547/99978507-603a5e80-2de9-11eb-97a3-46f5a505e17b.gif)
 
+
+
+
 ### Data augmentation for Contrastive Learning
 <img src="https://user-images.githubusercontent.com/17904547/99978624-85c76800-2de9-11eb-94e1-560bb1125fe1.png" width=700>
 <img src="https://user-images.githubusercontent.com/17904547/99978776-b909f700-2de9-11eb-815f-f4eaaad89ed8.png" width=700>
@@ -156,4 +159,3 @@ Memory mechanism | - | MoCo의 방식과 통합
 
 
 ​
-a
