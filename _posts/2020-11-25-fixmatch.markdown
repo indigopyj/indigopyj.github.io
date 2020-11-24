@@ -1,7 +1,7 @@
 ---
 layout: post
 title: FixMatch &#58; Simplifying Semi-Supervised Learning with Consistency and Confidence 논문요약
-date: '2020-11-25 01:20:00 +0900'
+date: '2020-11-25 01:20:00'
 description: # Add post description (optional)
 img: fixmatch.png # Add image post (optional)
 tags: [Papers]

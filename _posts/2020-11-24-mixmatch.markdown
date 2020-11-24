@@ -1,7 +1,7 @@
 ---
 layout: post
 title: MixMatch &#58; A Holistic Approach to Semi-Supervised Learning 논문요약
-date: '2020-11-24 01:00:00 +0900'
+date: '2020-11-24 01:00:00'
 description: # Add post description (optional)
 img: mixmatch.png # Add image post (optional)
 tags: [Papers]

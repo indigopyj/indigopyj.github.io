@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ReMixMatch &#58; Semi-Supervised Learning with Distribution Alignment and Augmentation Anchoring 논문요약
-date: '2020-11-25 00:50:00 +0900'
+date: '2020-11-25 00:50:00'
 description: # Add post description (optional)
 img: remixmatch.png # Add image post (optional)
 tags: [Papers]

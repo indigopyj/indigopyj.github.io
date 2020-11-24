@@ -1,7 +1,7 @@
 ---
 layout: post
 title: SimCLR, SimCLRv2 논문요약
-date: '2020-11-24 00:24:00 +0900'
+date: '2020-11-24 00:24:00'
 description: # Add post description (optional)
 img: simclr.png # Add image post (optional)
 tags: [Papers]
