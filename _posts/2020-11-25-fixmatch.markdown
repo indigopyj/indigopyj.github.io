@@ -24,7 +24,7 @@ https://amitness.com/2020/03/fixmatch-semi-supervised/
 
 ![image](https://user-images.githubusercontent.com/17904547/100119619-68160380-2eba-11eb-9cac-de644bbde9a3.png)
 
-<img src="https://user-images.githubusercontent.com/17904547/100119644-6f3d1180-2eba-1eb-8f22-bb7138dcc229.png" width=400>
+<img src="https://user-images.githubusercontent.com/17904547/100122904-4ec28680-2ebd-11eb-90b3-158f4f975a8a.png" width=400>
 
 - labeled data로 모델 선학습
 - 학습된 모델로 unlabeled image 예측
