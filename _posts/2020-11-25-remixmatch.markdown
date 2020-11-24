@@ -11,7 +11,9 @@ author: # Add name author (optional)
 
 이미지 출처:
 http://dsba.korea.ac.kr/seminar/?mod=document&uid=248
+
 https://amitness.com/2020/07/semi-supervised-learning/
+
 
 ----------------------------------- 
 
