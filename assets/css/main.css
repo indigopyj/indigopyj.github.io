@@ -1297,7 +1297,7 @@ pre code {
   left: 2.5%;
   bottom: 10%;
   color: #fff;
-  font-weight: bolder
+  font-weight: bolder;
   text-shadow: 1px 1px 0 black;
 }
 
@@ -1660,7 +1660,7 @@ pre code {
     left: 2.5%;
     bottom: 10%;
     color: #fff;
-    font-weight: bolder
+    font-weight: bolder;
     text-shadow: 1px 1px 0 black;
   }
 }
