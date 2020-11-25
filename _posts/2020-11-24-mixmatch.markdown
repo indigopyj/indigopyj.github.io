@@ -4,7 +4,7 @@ title: MixMatch &#58; A Holistic Approach to Semi-Supervised Learning 논문요�
 date: '2020-11-24 01:00:00'
 description: # Add post description (optional)
 img: mixmatch.png # Add image post (optional)
-tags: [Papers]
+tags: [Papers, Semi-supervised Learning]
 author: # Add name author (optional)
 ---
 

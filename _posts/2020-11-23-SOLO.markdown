@@ -4,7 +4,7 @@ title: SOLO &#58; Segmenting Objects by Locations 논문요약
 date: '2020-11-23 16:21:00 +0900'
 description: # Add post description (optional)
 img: SOLO.png # Add image post (optional)
-tags: [Papers]
+tags: [Papers, Segmentation]
 author: # Add name author (optional)
 ---
 

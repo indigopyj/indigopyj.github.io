@@ -4,7 +4,7 @@ title: FixMatch &#58; Simplifying Semi-Supervised Learning with Consistency and 
 date: '2020-11-25 01:20:00'
 description: # Add post description (optional)
 img: fixmatch.png # Add image post (optional)
-tags: [Papers]
+tags: [Papers, Semi-supervised Learning]
 author: # Add name author (optional)
 ---
 

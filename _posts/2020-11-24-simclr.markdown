@@ -4,7 +4,7 @@ title: SimCLR, SimCLRv2 논문요약
 date: '2020-11-24 00:24:00'
 description: # Add post description (optional)
 img: simclr.png # Add image post (optional)
-tags: [Papers]
+tags: [Papers, Contrastive Learning]
 author: # Add name author (optional)
 ---
 
@@ -26,7 +26,7 @@ author: # Add name author (optional)
 
 - SimCLR : Discriminative Approach based on **Contrastive learning**
 
-  - Dta augmentation
+  - Data augmentation
   - Nonlinear transformation
   - Contrastive cross entropy loss
   - batch size ↑, num of epochs ↑
