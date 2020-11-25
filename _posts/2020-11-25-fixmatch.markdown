@@ -58,8 +58,11 @@ https://amitness.com/2020/03/fixmatch-semi-supervised/
 
 2) For Unlabeled data,
     2-1) compute the model's predicted class distribution given a weakly-augmented version
+    
     2-2) Get pseudo-label of weakly-augmented version
+    
     2-3) compute the model's predicted class distribution given a strongly-augmented version
+    
     2-4) Apply Cross Entropy with the predicted value and the pseudo label
 
 <img src="https://user-images.githubusercontent.com/17904547/100119810-a27fa080-2eba-11eb-897b-68689e9414d8.png" width=400>
