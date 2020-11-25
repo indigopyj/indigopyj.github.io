@@ -57,6 +57,7 @@ https://amitness.com/2020/03/fixmatch-semi-supervised/
 <img src="https://user-images.githubusercontent.com/17904547/100119790-9abffc00-2eba-11eb-82fa-232f18ff8571.png" width=400>
 
 2) For Unlabeled data,
+   
     2-1) compute the model's predicted class distribution given a weakly-augmented version
     
     2-2) Get pseudo-label of weakly-augmented version
