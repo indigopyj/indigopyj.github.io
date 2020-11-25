@@ -1296,9 +1296,9 @@ pre code {
   font-size: 12px;
   left: 2.5%;
   bottom: 10%;
-  color: #000;
+  color: #fff;
   font-weight: bolder
-  text-shadow: 2px 2px #000;
+  text-shadow: 1px 1px 0 black;
 }
 
 .recent-box .recent-list .recent-item:hover {
@@ -1659,9 +1659,9 @@ pre code {
     font-size: 12px;
     left: 2.5%;
     bottom: 10%;
-    color: #000;
+    color: #fff;
     font-weight: bolder
-    text-shadow: 2px 2px #000;
+    text-shadow: 1px 1px 0 black;
   }
 }
 
@@ -1709,6 +1709,8 @@ pre code {
     left: 2.5%;
     bottom: 10%;
     color: #fff;
+    font-weight: bolder;
+    text-shadow: 1px 1px 0 black;
   }
   .newsletter .newsletter-box .subscribe-btn {
     width: 80px;
