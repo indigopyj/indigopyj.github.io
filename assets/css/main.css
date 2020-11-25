@@ -1298,6 +1298,7 @@ pre code {
   bottom: 10%;
   color: #000;
   font-weight: bolder
+  text-shadow: 2px 2px #000;
 }
 
 .recent-box .recent-list .recent-item:hover {
@@ -1660,6 +1661,7 @@ pre code {
     bottom: 10%;
     color: #000;
     font-weight: bolder
+    text-shadow: 2px 2px #000;
   }
 }
 
