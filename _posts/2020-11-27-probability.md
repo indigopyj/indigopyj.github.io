@@ -114,6 +114,8 @@ $$ p(x) = \int p(x,y)dy $$
 
 $$ P(y|x) = \frac{P(y,x)}{P(x)} $$
 
+aa
+
 단, $P(x) > 0$
 
 
@@ -134,7 +136,7 @@ $$ P(y|x) = \frac{P(y,x)}{P(x)} $$
 
 ​
 - 랜덤변수 z에 대해서 두 랜덤변수 x,y는 **조건부 독립적(conditional independent)**이다.
-  - notation : $x \perp y | z$
+  - notation : $x \perp y &#124; z$
 
 <img width="741" alt="스크린샷 2020-11-27 오후 3 56 48" src="https://user-images.githubusercontent.com/17904547/100420097-2a3afa00-30c9-11eb-96e1-1aa051e06b81.png">
 
