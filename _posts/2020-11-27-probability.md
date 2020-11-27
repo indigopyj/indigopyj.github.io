@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 확률과 정보이론 개념정리
-date: '2020-11-26 19:40:00'
+date: '2020-11-27 16:30:00'
 description: # Add post description (optional)
 img: default.jpg # Add image post (optional)
 tags: [Study]
@@ -29,7 +29,7 @@ GAN을 공부하는데 모르는 통계용어들이 자꾸 튀어나와서 결�
 "그 사건이 일어날 확률은 p 이다"
 == experiment를 무한 번 반복한다면 결과적으로 p의 비율로 그 사건이 일어날 수 있다는 뜻이다.
 
-단 여기서 이와같은 추론은 **반복한다**는 전제에서만 적용할 수 �다.
+단 여기서 이와같은 추론은 **반복한다**는 전제에서만 적용할 수 있다.
 
 정리하자면 **frequentist probability는 어떤 사건이 일어날 비율/빈도**를 말한다.
 
@@ -142,7 +142,7 @@ $$P(y|x) = \frac{P(y,x)}{P(x)}$$
 
 ## Expectation, variance and covariance
 
-- Expectation : f(x)에 대한 기댓값, 평균값, mean, average 
+- **Expectation** : f(x)에 대한 기댓값, 평균값, mean, average 
 
 이산확률분포에서는 
 
@@ -160,4 +160,4 @@ $$P(y|x) = \frac{P(y,x)}{P(x)}$$
 
 
 
-�
+
