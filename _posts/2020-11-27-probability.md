@@ -83,7 +83,9 @@ GAN을 공부하는데 모르는 통계용어들이 자꾸 튀어나와서 결�
 
 - Uniform distribution : k개의 다른 state에 대해 random variable x가 존재할 때, 모든 i에 대해 아래 식을 만족한다.
 
-$$ P(x_i) = \frac{1}{k} $$
+$$ 
+P(x_i) = \frac{1}{k} 
+$$
 
 
 ### Continuous Variables
@@ -102,9 +104,13 @@ $$ P(x_i) = \frac{1}{k} $$
 
 - Sum rule: 어떤 random variable x,y가 있고, P(x,y)를 알고있을때 P(x)를 아래와 같이 구할 수 있음.
 
-$$\forall x \in X, P(x) = \sum _{y} P(x,y)$$
+$$
+\forall x \in X, P(x) = \sum _{y} P(x,y)
+$$
 
-$$ p(x) = \int p(x,y)dy $$
+$$ 
+p(x) = \int p(x,y)dy 
+$$
 
 
 
@@ -112,9 +118,10 @@ $$ p(x) = \int p(x,y)dy $$
 
 - **어떤 사건들이 일어나고 있을 때, 한 사건이 일어날 확률**
 
-$$ P(y|x) = \frac{P(y,x)}{P(x)} $$
+$$ 
+P(y|x) = \frac{P(y,x)}{P(x)} 
+$$
 
-aa
 
 단, $P(x) > 0$
 
@@ -136,7 +143,7 @@ aa
 
 ​
 - 랜덤변수 z에 대해서 두 랜덤변수 x,y는 **조건부 독립적(conditional independent)**이다.
-  - notation : $x \perp y &#124; z$
+  - notation : $x \perp y \vert z$
 
 <img width="741" alt="스크린샷 2020-11-27 오후 3 56 48" src="https://user-images.githubusercontent.com/17904547/100420097-2a3afa00-30c9-11eb-96e1-1aa051e06b81.png">
 
