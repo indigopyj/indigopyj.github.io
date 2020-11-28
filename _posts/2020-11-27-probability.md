@@ -84,7 +84,7 @@ GAN을 공부하는데 모르는 통계용어들이 자꾸 튀어나와서 결�
 - Uniform distribution : k개의 다른 state에 대해 random variable x가 존재할 때, 모든 i에 대해 아래 식을 만족한다.
 
 
-$$ P(x_i) = \frac{1}{k} $$
+\begin{align*} P(x_i) = \frac{1}{k} \end{align*}
 
 
 ### Continuous Variables
@@ -103,9 +103,8 @@ $$ P(x_i) = \frac{1}{k} $$
 
 - Sum rule: 어떤 random variable x,y가 있고, P(x,y)를 알고있을때 P(x)를 아래와 같이 구할 수 있음.
 
-$$ \forall x \in X, P(x) = \sum _{y} P(x,y) $$
-
-$$ p(x) = \int p(x,y)dy $$
+\begin{align*} \forall x \in X, P(x) = \sum _{y} P(x,y) \\
+p(x) = \int p(x,y)dy \end{align*}
 
 
 
@@ -114,7 +113,7 @@ $$ p(x) = \int p(x,y)dy $$
 - **어떤 사건들이 일어나고 있을 때, 한 사건이 일어날 확률**
 
 
-$$ P(y \ver x) = \frac{P(y,x)}{P(x)} $$
+\begin{align*} P(y \ver x) = \frac{P(y,x)}{P(x)} \end{align*}
 
 
 단, $P(x) > 0$
