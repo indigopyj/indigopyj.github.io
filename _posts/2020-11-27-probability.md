@@ -114,7 +114,7 @@ $p(x) = \int p(x,y)dy$
 - **어떤 사건들이 일어나고 있을 때, 한 사건이 일어날 확률**
 
 
-$P(y \ver x) = \frac{P(y,x)}{P(x)}$
+$P(y \vert x) = \frac{P(y,x)}{P(x)}$
 
 
 단, $P(x) > 0$
