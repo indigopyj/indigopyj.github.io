@@ -83,10 +83,7 @@ GAN을 공부하는데 모르는 통계용어들이 자꾸 튀어나와서 결�
 
 - Uniform distribution : k개의 다른 state에 대해 random variable x가 존재할 때, 모든 i에 대해 아래 식을 만족한다.
 
-\begin{align*} 
-P(x_i) = \frac{1}{k} 
-\end{align****}
-
+<p>\[ P(x_i) = \frac{1}{k} \] </p>
 
 
 ### Continuous Variables
