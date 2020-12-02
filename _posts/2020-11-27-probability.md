@@ -191,7 +191,8 @@ GAN을 공부하는데 모르는 통계용어들이 자꾸 튀어나와서 결�
 ## Bernoulli Distribution
 
 - single binary random variable에 대한 분포
-- single parameter $\phi \in [0,1]$에 의해 제어됨.
+- 무조건 0 또는 1(혹은 -1 또는 1)이 나옴.
+- single parameter $\phi \in [0,1]$에 의해 제어됨. 𝟇는 1이 나올 확률(=모수)을 의미함.
 - 아래와 같은 성질이 있음.
 
 <p align="center"><img width="279" alt="스크린샷 2020-12-02 오후 3 11 58" src="https://user-images.githubusercontent.com/17904547/100835288-ba55b680-34b0-11eb-83f7-9ef0aa48c0d6.png"></p>
@@ -199,14 +200,14 @@ GAN을 공부하는데 모르는 통계용어들이 자꾸 튀어나와서 결�
 ## Multinoulli Distribution
 
 - **multinoulli or categorical distribution**는 유한한 k에 대해서, k개의 다른 state에 대한 분포이다.
-- 파라미터 벡터 $p \in [0,1]^{k-1}$에 의해 제어됨. 이때 $p_{i}$는 i번째 state에 대한 확률을 말한다.
+- 파라미터 벡터 $p \in [0,1]^{k-1}$에 의해 제어됨. 이때 $p_{i}$는 i번째 state가 나올 확률을 말한다.
 - k번째 state의 확률은 $1 - 1^{\top }p$이다. (단, $1^{\top }p \leq 1$)
 
 ## Gaussian Distribution( = Normal distribution)
 
 <p align="center"><img width="350" alt="스크린샷 2020-12-02 오후 3 30 18" src="https://user-images.githubusercontent.com/17904547/100836800-4a94fb00-34b3-11eb-9e9c-67f562eb1d33.png"></p>
 
-- precision : variance의 역수 $1^{\top }p \leq 1$.  PDF evaluation을 여러번할때 사용됨.
+- precision : variance의 역수. $1^{\top }p \leq 1$.  PDF evaluation을 여러번할때 사용됨.
   precision으로 나타낸 가우시안 분포
 <p align="center"><img width="414" alt="스크린샷 2020-12-02 오후 3 50 53" src="https://user-images.githubusercontent.com/17904547/100838649-2ab30680-34b6-11eb-92bc-7286295cd805.png"></p>
 
@@ -230,7 +231,7 @@ GAN을 공부하는데 모르는 통계용어들이 자꾸 튀어나와서 결�
 ### Exponential distribution
 - 어떤 확률분포가 x=0에서 sharp point(첨점)을 가지도록 하고 싶을때 다음과 같이 나타낼 수 있다.
 <p align="center">
-<img width="274" alt="스크린샷 2020-12-02 오후 4 20 45" src="https://user-images.githubusercontent.com/17904547/100841222-56d08680-34ba-11eb-8163-16152f8a74d0.png">
+<img width="300" alt="스크린샷 2020-12-02 오후 4 20 45" src="https://user-images.githubusercontent.com/17904547/100841222-56d08680-34ba-11eb-8163-16152f8a74d0.png">
 </p>
 
 ### Laplace distribution
@@ -256,7 +257,7 @@ GAN을 공부하는데 모르는 통계용어들이 자꾸 튀어나와서 결�
 
 ### Empirical Distribution
 
-<img width="174" alt="스크린샷 2020-12-02 오후 7 58 25" src="https://user-images.githubusercontent.com/17904547/100864018-be95ca00-34d8-11eb-825f-11e3346557da.png">
+<img width="250" alt="스크린샷 2020-12-02 오후 7 58 25" src="https://user-images.githubusercontent.com/17904547/100864018-be95ca00-34d8-11eb-825f-11e3346557da.png">
 
 - m개의 점의 각각의 확률질량은 1/m이다.
 - Dirac delta distribution은 연속적인 변수에 대해서 empirical distribution을 정의할때 쓰인다.
@@ -269,7 +270,7 @@ GAN을 공부하는데 모르는 통계용어들이 자꾸 튀어나와서 결�
 - 여러 component distribution을 합쳐서 만드는 분포
 - 어떤 분포가 샘플링을 할것인지를 고르는 것은, multinoulli distribution에 의해 결정된 component identity가 한다.(밑에 식, P(c)가 multinoulli distribution)
 
-<p align='center'><img width="205" alt="스크린샷 2020-12-02 오후 8 22 53" src="https://user-images.githubusercontent.com/17904547/100866546-2994d000-34dc-11eb-97d4-a5a833bf1ae6.png"></p>
+<p align='center'><img width="250" alt="스크린샷 2020-12-02 오후 8 22 53" src="https://user-images.githubusercontent.com/17904547/100866546-2994d000-34dc-11eb-97d4-a5a833bf1ae6.png"></p>
 
 ### Latent variable
 - 일반적으로 직접 관찰할 수 없는 random variable을 말한다.
@@ -279,3 +280,82 @@ GAN을 공부하는데 모르는 통계용어들이 자꾸 튀어나와서 결�
 
 - 즉 latent variable의 분포 P(c)와 visible variable x와 연관된 P(x &#124; c)에 의해 P(x)의 분포가 결정된다.
 
+
+### Gaussian mixture model
+
+- mixture model에서 component $p(x \vert c = i)$가 모두 가우시안이다.
+- 각 component는 각자 다른 평균값 𝞵_i , 공분산 𝞢_i 를 가지고 있다.(혹은 모두 같은 평균 or 공분산을 가질수도 있음)
+- 평균과 공분산, 그리고 Gaussian mixture의 파라미터들은  **prior probability**를 결정한다.
+
+### Prior probability
+
+\\[ \alpha_{i} = P(c = i) \\]
+
+- prior는 "x를 관찰하기 전의 c에 대한 모델의 신뢰도를 표현"했다는 뜻이다.
+
+### Posterior probability
+
+\\[ P(c \vert x) \\]
+
+- x를 관찰 후에 계산됨.
+
+<img width="370" alt="스크린샷 2020-12-02 오후 11 43 00" src="https://user-images.githubusercontent.com/17904547/100887272-1ee83400-34f8-11eb-9ae4-edcff87718a3.png">
+
+Gaussian Mixture 예시
+
+- 세 가지의 component로 이루어짐.
+
+1) 제일 왼쪽하단 : isotropic(등방성) 공분산 행렬. 모든방향에서의 분산이 일정함.
+2) 중간 : diagonal 공분산 행렬. 각 분산값이 축과 정렬된 방향을 따라 달라짐. 이 그림에서는 x2를 따라 정렬된 분산값이 많음.
+3) 제일 오른쪽 상단 : full-rank 공분산 행렬. 임의의 방향에 따라 분산값이 달라짐.
+
+
+# Useful properties of common functions
+
+## Logistic sigmoid
+
+\\[ \sigma(x) = \frac{1}{1+exp(-x)} \\]
+
+- 베르누이 분포를 따르고 𝟇의 범위는 주로 (0,1)이다.
+- 양수/음수 양쪽에서 수렴하는 형태임. = **insensitive to small changes in its input**
+
+<img width="626" alt="스크린샷 2020-12-02 오후 11 49 57" src="https://user-images.githubusercontent.com/17904547/100888117-17755a80-34f9-11eb-8ac8-093b2d344742.png">
+
+
+## Softplus function
+
+\\[ \zeta(x) = log(1+exp(x)) \\]
+
+- 가우시안 정규분포에서 𝞫나 𝞼를 생성할때 쓰면 유용하다.(그 이유는 걔네 범위가 (0,∞) 라서)
+- sigmoid를 포함하고 있는 표현을 조작할때도 많이 나옴.
+
+<img width="593" alt="스크린샷 2020-12-03 오전 12 03 59" src="https://user-images.githubusercontent.com/17904547/100889945-0cbbc500-34fb-11eb-808c-8a57fd579955.png">
+
+
+- 아래 성질들은 외우고 있으면 매우 유용하다.
+
+<p align='center'><img width="426" alt="스크린샷 2020-12-03 오전 12 05 19" src="https://user-images.githubusercontent.com/17904547/100890117-3d036380-34fb-11eb-9976-6c209b77a88c.png"></p>
+
+
+# Bayes' Rule 베이즈 정리
+
+<img width="251" alt="스크린샷 2020-12-03 오전 12 12 22" src="https://user-images.githubusercontent.com/17904547/100891056-388b7a80-34fc-11eb-96ea-35f51414b752.png">
+
+- 여기서 만약 $P(y)$를 모른다고 하더라도 $P(y) = \sum_{x}P(y \vert x)P(x)$ 로 유도할 수 있음.
+- 조건부확률을 유도할 수 있음.
+
+
+# Continuous Variables에 대한 기술적인 내용
+
+Measure theory에 나오는 개념들 몇 가지를 짧게 소개함.
+
+- Measure zero : 무시해도 될 정도로 작은 점들의 집합.
+  - Measuring 하는 공간에서 volume을 아예 차지하지 않는다고 생각해도됨.
+- Almost everywhere : Measure zero를 뺀 모든 공간을 아우른다는 성질.
+  - 주로 continuous values에 대해서만 적용됨.
+- 서로 deterministic functions인 연속적인 랜덤변수를 다룰때 중요한 테크닉:
+  - 한 함수를 어떤 다른 함수의 선형변환을 통해 나타낼때, 공간왜곡을 고려해야함.
+  - 미소영역에서의 x는 y공간에서 다른 volume을 가질 것임.
+  - Jacobian matrix : 미소영역에서 '비선형 변환'을 '선형 변환'으로 근사시킨것. 아래 수식에서의 derivative가 고차원에서 일반화된 형태가 자코비안행렬임. 
+
+<p align="center"><img width="299" alt="스크린샷 2020-12-03 오전 12 48 35" src="https://user-images.githubusercontent.com/17904547/100895770-47286080-3501-11eb-88bb-8e62b2a5cce8.png"></p>
