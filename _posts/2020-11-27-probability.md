@@ -240,4 +240,3 @@ GAN을 공부하는데 모르는 통계용어들이 자꾸 튀어나와서 결�
 <img width="388" alt="스크린샷 2020-12-02 오후 4 21 11" src="https://user-images.githubusercontent.com/17904547/100841269-65b73900-34ba-11eb-8ddf-5370df01bde4.png">
 </p>
 
-�
