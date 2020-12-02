@@ -240,3 +240,42 @@ GAN을 공부하는데 모르는 통계용어들이 자꾸 튀어나와서 결�
 <img width="388" alt="스크린샷 2020-12-02 오후 4 21 11" src="https://user-images.githubusercontent.com/17904547/100841269-65b73900-34ba-11eb-8ddf-5370df01bde4.png">
 </p>
 
+## The Dirac Distribution and Empirical Distribution
+
+### The Dirac Distribution
+
+
+- 좌표계에서 한 점을 표현하기 위한 확률분포
+- $p(x) = \delta (x - \mu)$
+- x=0일때만 0값을 가지고, 적분값은 1이다.
+  - 이렇게 적분했을때 어떤 특성이 나타나는 함수를 **Generalized function**이라고 함.
+
+<p align="center"><img src="https://user-images.githubusercontent.com/17904547/100863300-b721f100-34d7-11eb-859a-1d8dffc812ae.png" ></p>
+
+- Dirac delta distribution은 **Empirical distribution**의 구성요소이다.
+
+### Empirical Distribution
+
+<img width="174" alt="스크린샷 2020-12-02 오후 7 58 25" src="https://user-images.githubusercontent.com/17904547/100864018-be95ca00-34d8-11eb-825f-11e3346557da.png">
+
+- m개의 점의 각각의 확률질량은 1/m이다.
+- Dirac delta distribution은 연속적인 변수에 대해서 empirical distribution을 정의할때 쓰인다.
+- 이산적인 변수에서는, empirical distribution은 multinoulli distribution과 비슷하다.  
+- 학습데이터셋의 empirical distribution은 모델학습 시에 샘플링하는 분포를 말한다.
+- **학습데이터의 likelihood를 최대화(maximize)시키는 확률밀도 = Empirical distribution**
+
+
+## Mixtures of Distributions
+- 여러 component distribution을 합쳐서 만드는 분포
+- 어떤 분포가 샘플링을 할것인지를 고르는 것은, multinoulli distribution에 의해 결정된 component identity가 한다.(밑에 식, P(c)가 multinoulli distribution)
+
+<p align='center'><img width="205" alt="스크린샷 2020-12-02 오후 8 22 53" src="https://user-images.githubusercontent.com/17904547/100866546-2994d000-34dc-11eb-97d4-a5a833bf1ae6.png"></p>
+
+### Latent variable
+- 일반적으로 직접 관찰할 수 없는 random variable을 말한다.
+- mixture model의 component identity variable c가 샘플을 제공한다. 그리고 joint distribution에 의해 x와 연관된다.
+
+\\[ P(x,c) = P(x \vert c)P(c) \\]
+
+- 즉 latent variable의 분포 P(c)와 visible variable x와 연관된 P(x &#124; c)에 의해 P(x)의 분포가 결정된다.
+
