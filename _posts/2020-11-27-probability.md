@@ -401,12 +401,12 @@ Measure theory에 나오는 개념들 몇 가지를 짧게 소개함.
 - Non-negative함
 - KL Divergence = 0 == P와 Q가 같은 분포를 가진다.
 - distribution 사이의 거리(distance)를 표현할때 쓰이기도 하지만, 실제 "거리"라고 할 수는 없다. 그 이유는 **asymmetric한 성질 때문이다.**
-- $D_KL(P \parallel Q) \neq D_KL(Q \parallel P)$
+- $D_{KL}(P \parallel Q) \neq D_{KL}(Q \parallel P)$
 
 ![스크린샷 2020-12-15 오후 9 29 55](https://user-images.githubusercontent.com/17904547/102215162-ae400f00-3f1c-11eb-8426-fef20786e1f0.png)
 
-- **minimize $D_KL(P \parallel Q)$ 하기(왼쪽)** : 우리는 p가 높은 확률을 가질때에 높은 확률을 가지는 q를 고른다. p의 모드가 여러개라면, q는 모든 모드에 대해서 high probability를 가지기 위해 모드들을 blur함.
-- **minimize $D_KL(Q \parallel P)$ 하기(오른쪽)** : 우리는 p가 낮은 확률을 가질때에 낮은 확률을 가지는 q를 고른다. p의 모드가 여러개라면, q는 모든 모드 사이에 low probability를 가진 곳을 피하기 위해 다음과 같이 하나의 single mode를 선택할 것이다.
+- **minimize $D_{KL}(P \parallel Q)$ 하기(왼쪽)** : 우리는 p가 높은 확률을 가질때에 높은 확률을 가지는 q를 고른다. p의 모드가 여러개라면, q는 모든 모드에 대해서 high probability를 가지기 위해 모드들을 blur함.
+- **minimize $D_{KL}(Q \parallel P)$ 하기(오른쪽)** : 우리는 p가 낮은 확률을 가질때에 낮은 확률을 가지는 q를 고른다. p의 모드가 여러개라면, q는 모든 모드 사이에 low probability를 가진 곳을 피하기 위해 다음과 같이 하나의 single mode를 선택할 것이다.
 
 이와 관련해서 자세한 이야기는 일전 포스팅에서 다룬 적 있으니 이를 참고
 <https://indigopyj.github.io/nips2016_1/>
@@ -416,3 +416,32 @@ Measure theory에 나오는 개념들 몇 가지를 짧게 소개함.
 ![스크린샷 2020-12-15 오후 9 48 38](https://user-images.githubusercontent.com/17904547/102216992-4c34d900-3f1f-11eb-819f-fa4de804b80d.png)
 
 - Q에 대한 cross entropy를 최소화하는 것은  KL Divergence를 최소화하는 것과 같다.
+
+
+## Structured Probabilistic Models(= Graphical Model)
+
+### Directed model
+
+방향성 모델은 다음과 같이 나타낼 수 있다.
+
+<img width="260" alt="스크린샷 2020-12-16 오전 12 22 39" src="https://user-images.githubusercontent.com/17904547/102234632-d20f4f00-3f34-11eb-9c29-24e977d09d23.png">
+
+예시.
+
+<img width="500" alt="스크린샷 2020-12-16 오전 12 23 28" src="https://user-images.githubusercontent.com/17904547/102234728-ed7a5a00-3f34-11eb-9841-ca5b3498bd0a.png">
+
+### Undirected Model
+
+방향성이 없는 모델은 다음과 같이 나타낼 수 있다.
+
+<img width="235" alt="스크린샷 2020-12-16 오전 12 25 50" src="https://user-images.githubusercontent.com/17904547/102235038-421dd500-3f35-11eb-8ddb-af8b255dc12a.png">
+
+여기서 C(?)는 "clique"라고, 서로 연결되어있는 모든 노드의 집합을 말한다.
+
+
+예시
+
+<img width="791" alt="스크린샷 2020-12-16 오전 12 30 21" src="https://user-images.githubusercontent.com/17904547/102235647-e30c9000-3f35-11eb-9c39-6b6157abd6cb.png">
+
+
+
