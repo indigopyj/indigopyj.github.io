@@ -441,7 +441,7 @@ Measure theory에 나오는 개념들 몇 가지를 짧게 소개함.
 
 예시
 
-<img width="791" alt="스크린샷 2020-12-16 오전 12 30 21" src="https://user-images.githubusercontent.com/17904547/102235647-e30c9000-3f35-11eb-9c39-6b6157abd6cb.png">
+<img width="500" alt="스크린샷 2020-12-16 오전 12 30 21" src="https://user-images.githubusercontent.com/17904547/102235647-e30c9000-3f35-11eb-9c39-6b6157abd6cb.png">
 
 
 
