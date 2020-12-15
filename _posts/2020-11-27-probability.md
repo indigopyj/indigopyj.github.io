@@ -359,3 +359,60 @@ Measure theory에 나오는 개념들 몇 가지를 짧게 소개함.
   - Jacobian matrix : 미소영역에서 '비선형 변환'을 '선형 변환'으로 근사시킨것. 아래 수식에서의 derivative가 고차원에서 일반화된 형태가 자코비안행렬임. 
 
 <p align="center"><img width="299" alt="스크린샷 2020-12-03 오전 12 48 35" src="https://user-images.githubusercontent.com/17904547/100895770-47286080-3501-11eb-88bb-8e62b2a5cce8.png"></p>
+
+
+# Information Theory
+
+## Basic Intuition
+
+- 일어날 것 같은 이벤트는 low information content를 가진다. 극단적인 경우(그 이벤트가 반드시 일어날 경우)에는 information content가 없다.
+- 덜 일어날 것 같은 이벤트는 high information content를 가진다.
+- Independent event는 additive information을 가진다. 예를 들면 동전던지기에서 앞면이 두번 나오는 이벤트는 앞면이 한번 나오는 이벤트의 두 배의 정보를 전달한다.
+
+## Self-information
+
+- 위 세가지 조건을 모두 만족하는 event x에 대한 self-information을 다음과 같이 정의할 수 있다.
+
+\\[ I(x) = -logP(x) \\]
+
+- Nat : the amount of information gained by observing an event of probability 1/e
+
+## Shannon entropy
+
+![스크린샷 2020-12-15 오후 8 56 28](https://user-images.githubusercontent.com/17904547/102212128-045e8380-3f18-11eb-9e46-4ffffa61d4de.png)
+
+- 각 메세지에 포함된 정보의 기댓값
+- 전체 사건의 확률분포의 불확실성의 양
+
+★ deterministic : output이 완전히 파라미터 값과 초기조건에 의해 결정됨.
+⟷ stochastic : randomness를 가지고 있음. 같은 파라미터와 같은 초기조건에도 다른 결과가 나올 수 있음.
+
+<img src="https://user-images.githubusercontent.com/17904547/102212677-eba29d80-3f18-11eb-9066-f3df0692201c.png" width=500>
+
+- 엔트로피 값이 작으면 Distribution이 거의 deterministic하다
+- 엔트로피 값이 크면 Distribution이 거의 uniform에 가깝다.
+
+
+## KL Divergence
+
+![스크린샷 2020-12-15 오후 9 14 05](https://user-images.githubusercontent.com/17904547/102213704-789a2680-3f1a-11eb-82a6-b9b3319d2c9c.png)
+
+- 두 분포가 얼마나 다른지를 나타내는 척도
+- Non-negative함
+- KL Divergence = 0 == P와 Q가 같은 분포를 가진다.
+- distribution 사이의 거리(distance)를 표현할때 쓰이기도 하지만, 실제 "거리"라고 할 수는 없다. 그 이유는 **asymmetric한 성질 때문이다.**
+- $D_KL(P \parallel Q) \neq D_KL(Q \parallel P)$
+
+![스크린샷 2020-12-15 오후 9 29 55](https://user-images.githubusercontent.com/17904547/102215162-ae400f00-3f1c-11eb-8426-fef20786e1f0.png)
+
+- **minimize $D_KL(P \parallel Q)$ 하기(왼쪽)** : 우리는 p가 높은 확률을 가질때에 높은 확률을 가지는 q를 고른다. p의 모드가 여러개라면, q는 모든 모드에 대해서 high probability를 가지기 위해 모드들을 blur함.
+- **minimize $D_KL(Q \parallel P)$ 하기(오른쪽)** : 우리는 p가 낮은 확률을 가질때에 낮은 확률을 가지는 q를 고른다. p의 모드가 여러개라면, q는 모든 모드 사이에 low probability를 가진 곳을 피하기 위해 다음과 같이 하나의 single mode를 선택할 것이다.
+
+이와 관련해서 자세한 이야기는 일전 포스팅에서 다룬 적 있으니 이를 참고
+<https://indigopyj.github.io/nips2016_1/>
+
+### Cross Entropy
+
+![스크린샷 2020-12-15 오후 9 48 38](https://user-images.githubusercontent.com/17904547/102216992-4c34d900-3f1f-11eb-819f-fa4de804b80d.png)
+
+- Q에 대한 cross entropy를 최소화하는 것은  KL Divergence를 최소화하는 것과 같다.
