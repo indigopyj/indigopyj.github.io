@@ -183,7 +183,7 @@ GAN을 공부하는데 모르는 통계용어들이 자꾸 튀어나와서 결�
 - 두 변수가 공분산이 0이면, _반드시_ 두 변수사이에는 linear dependence가 존재하지 않는다.
   - 즉 Independence가 zero-covariance보다 더 강한 조건임. 그 이유는 독립성은 nonlinear relationship도 제외하기 때문.
   - 즉 dependent한 두 변수가 zero-covariance일 수 있다.
-- **covariance matrix** : x가 n차원의 벡터일때, $ Cov(x)_{i,j} = Cov(x_{i}, x_{j}) $ 을 만족하는 n x n 행렬이다.
+- **covariance matrix** : x가 n차원의 벡터일때, $Cov(x)_{i,j} = Cov(x_{i}, x_{j})$ 을 만족하는 n x n 행렬이다.
 - covariance magrix의 대각선원소는 variance와 같다.
 
 # Common Probability Distributions
