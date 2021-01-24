@@ -14,37 +14,37 @@ use_math: true
 ### Double Descent phenomenon
 > Bigger models are better
 
-<img src="./img/ddd1.png" height=300>
+<img src="../assets/img/ddd1.png" height=300>
 
 - Performance first **improves**, then gets **worse**, and then **improves** again with increasing model size, data size, or training time.
 - This phenomenon is called _"Double Descent"_
 
 ### EMC(Effective Model Complexity)
 
-<img src="./img/ddd2.png">
+<img src="../assets/img/ddd2.png">
 
 - EMC: the maximum number of samples n on which Training procedure T acheives on average ≈ 0 training error
 
 
 
-<img src="./img/ddd3.png">
+<img src="../assets/img/ddd3.png">
 
 - interpolation threshold : EMC(T) = n
 - Critical interval : interval around interpolation threshold
   - Below and above critical interval : complexity ↑, performance ↑
   - Within critical interval : performance ↓
 
-<img src="./img/ddd5.svg" height=500>
+<img src="../assets/img/ddd5.svg" height=500>
 
 ### Model-wise double descent
 
-<img src="./img/ddd4.png">
+<img src="../assets/img/ddd4.png">
 
 - Double Descent intensifies when there is more label noise.
 
 ### Epoch-wise double descent
 
-<img src="./img/ddd6.png">
+<img src="../assets/img/ddd6.png">
 
 - (Left) Larger model and intermediate model has double descent.
   - Larger model has double descent earlier than intermediate one.
@@ -53,12 +53,12 @@ use_math: true
 
 ### Sample-wise non-monotonicity
 
-<img src="./img/ddd8.png">
+<img src="../assets/img/ddd8.png">
 
 - (Left) Double descent abates when more samples.
 - (Right) there is a regime where more samples hurt performance. But more than 10K, smaller model is better.
 
-<img src="./img/ddd7.svg" height=300>
+<img src="../assets/img/ddd7.svg" height=300>
 
 - increasing # of samples shifts the curve downwards towards lower test error.
 - More samples require larger models to fit.
